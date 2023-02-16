@@ -7,9 +7,9 @@
 
 using namespace std;
 
-int main(int argc,char* argv)
+int main()
 {
-	// »ñÈ¡³ÌĞòÂ·¾¶
+	// è·å–ç¨‹åºè·¯å¾„
 	WCHAR CrruentPath[256];
 	GetCurrentDirectory(256, CrruentPath);
 	wstring WSPath;
@@ -24,9 +24,9 @@ int main(int argc,char* argv)
 	string Path = string(WSPath.begin(), WSPath.end()) + '/';
 	string FileType = "*.*";
 
-	cout << "Ä¿±êÂ·¾¶: " << Path << endl;
+	cout << "ç›®æ ‡è·¯å¾„: " << Path << endl;
 
-	// »ñÈ¡Â·¾¶ÏÂÈ«²¿ÎÄ¼şÃû³Æ
+	// è·å–è·¯å¾„ä¸‹å…¨éƒ¨æ–‡ä»¶åç§°
 	vector<string> Files;
 	_finddata_t file;
 	long long lf = _findfirst((Path + FileType).c_str(), &file);
@@ -46,7 +46,7 @@ int main(int argc,char* argv)
 		}
 	}
 
-	// °ÑËùÓĞÏàÍ¬ÎÄ¼şÃûµÄÎÄ¼şÒÆ¶¯µ½Í¬Ò»ÒÔ¸ÃÎÄ¼şÃûÃüÃûµÄÎÄ¼ş¼Ğ
+	// æŠŠæ‰€æœ‰ç›¸åŒæ–‡ä»¶åçš„æ–‡ä»¶ç§»åŠ¨åˆ°åŒä¸€ä»¥è¯¥æ–‡ä»¶åå‘½åçš„æ–‡ä»¶å¤¹
 	int total = 0;
 	for (size_t i = 0; i < Files.size(); i++)
 	{
@@ -55,14 +55,14 @@ int main(int argc,char* argv)
 		string NewFilePath = Path + FileNameWithoutType + "/";
 		string NewFilePathWithFileName = Path + FileNameWithoutType + "/" + Files[i];
 
-		// °Ñ string ×ª»¯Îª LPCWSTR
-		// ÎÄ¼ş±¾ÉíÂ·¾¶
+		// æŠŠ string è½¬åŒ–ä¸º LPCWSTR
+		// æ–‡ä»¶æœ¬èº«è·¯å¾„
 		std::wstring WSFilePath = std::wstring(FilePath.begin(), FilePath.end());
 		LPCWSTR LPFilePath = WSFilePath.c_str();
-		// ÒªÒÆ¶¯µ½µÄÂ·¾¶£¬°üº¬ÎÄ¼şÃû
+		// è¦ç§»åŠ¨åˆ°çš„è·¯å¾„ï¼ŒåŒ…å«æ–‡ä»¶å
 		std::wstring WSNewFilePathWithFileName = std::wstring(NewFilePathWithFileName.begin(), NewFilePathWithFileName.end());
 		LPCWSTR LPNewFilePathWithFileName = WSNewFilePathWithFileName.c_str();
-		// ÒªÒÆ¶¯µ½µÄÂ·¾¶
+		// è¦ç§»åŠ¨åˆ°çš„è·¯å¾„
 		std::wstring WSNewFilePath = std::wstring(NewFilePath.begin(), NewFilePath.end());
 		LPCWSTR LPNewFilePath = WSNewFilePath.c_str();
 
@@ -75,7 +75,7 @@ int main(int argc,char* argv)
 		}
 	}
 
-	cout << "¹²ÒÆ¶¯ÁË " << total << " ¸öÎÄ¼ş" << endl;
+	cout << "å…±ç§»åŠ¨äº† " << total << " ä¸ªæ–‡ä»¶" << endl;
 	system("PAUSE");
 
 	return 1;
